@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIBLUX C-net</title>
+    
+    <style>
+        body {
+            background-color: #000; /* Fond noir */
+            color: #00c49a; /* Texte vert néon */
+            font-family: sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* --- En-tête --- */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .app-title {
+            font-size: 2.5em;
+            color: #00c49a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        /* --- Boutons de Navigation (Non fonctionnels pour l'instant) --- */
+        .nav-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #00c49a;
+            color: #000;
+            border: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* --- Section Quick Buy --- */
+        .quick-buy-section {
+            margin-top: 40px;
+        }
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* Style des groupes d'entrée (label + input) */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        /* Cache le label */
+        .input-group label {
+            display: none; 
+        }
+
+        /* Style de la zone de saisie */
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            border: 2px solid #00c49a;
+            color: #00c49a;
+            font-size: 1.1em;
+            box-sizing: border-box;
+        }
+
+        /* Style du placeholder */
+        .input-group input::placeholder {
+            color: rgba(0, 196, 154, 0.7);
+        }
+
+        /* Style du bouton Buy (quick) */
+        .buy-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #00c49a;
+            color: #000;
+            border: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        /* Message de confirmation/erreur */
+        #message {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: rgba(0, 196, 154, 0.2);
+            color: #00c49a;
+        }
+        .error {
+            background-color: rgba(255, 0, 0, 0.2);
+            color: #ff0000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="app-title">NIBLUX C-net</h1>
+        <p class="subtitle">Client: login with Phone + Password. Admin: secure email login.</p>
+    </header>
+
+    <button class="nav-button">Client – Buy</button>
+    <button class="nav-button">Client – Login</button>
+    <button class="nav-button">Client – Signup</button>
+    <button class="nav-button">Admin</button>
+
+    <section class="quick-buy-section">
+        <h2 class="section-title">Quick Buy</h2>
+
+        <form id="quickBuyForm">
+            <div class="input-group">
+                <label for="fullName">Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Full name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="034xxxxxxx" required>
+            </div>
+
+            <div class="input-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Zone / street" required>
+            </div>
+
+            <div class="input-group">
+                <label for="plan">Choose Plan</label>
+                <input type="text" id="plan" name="plan" placeholder="Enter Plan Name" required> 
+            </div>
+
+            <button type="submit" class="buy-button">Buy (quick)</button>
+        </form>
+        
+        <div id="message"></div>
+
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        // *** REMPLACER CECI AVEC VOS CLÉS DE CONFIGURATION FIREBASE ***
+        const firebaseConfig = {
+          apiKey: "VOTRE_API_KEY",
+          authDomain: "votre-domaine.firebaseapp.com",
+          projectId: "votre-project-id",
+          storageBucket: "votre-storage-bucket",
+          messagingSenderId: "votre-messaging-sender-id",
+          appId: "votre-app-id"
+        };
+        // ***************************************************************
+
+        // Initialiser Firebase et Firestore
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = app.firestore();
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
+"Added index.html with design and Firebase config")
